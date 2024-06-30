@@ -3,7 +3,7 @@ let handler = m => m
 handler.before = async (m, { conn, args }) => {
   
   if (m.isBaileys || (m.isBaileys && m.fromMe && m.isGroup)) return
-  if (m.isGroup) return 
+  if (m.isGroup || m.fromMe) return
   if (m.chat.endsWith('broadcast')) return
   
   await delay(3000)
