@@ -1,6 +1,6 @@
 const handler = async (m, {conn, text}) => {
 	
-await conn.chatModify(m.chat, 'delete')
+await conn.chatModify(m.chat, {delete: true})
 m.reply("done")
 };
 handler.help = ['afk [alasan]'];
