@@ -1,8 +1,7 @@
 const handler = async (m, {conn, text}) => {
-  const lastMsgInChat = await getLastMessageInChat(m.sender) // implement this on your end
+	
 await conn.chatModify({
   delete: true,
-  lastMessages: [{ key: lastMsgInChat.key, messageTimestamp: lastMsgInChat.messageTimestamp }]
 },
 m.sender)
 m.reply("done")
