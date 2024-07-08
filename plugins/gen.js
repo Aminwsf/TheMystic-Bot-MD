@@ -7,7 +7,7 @@ await conn.sendFile(m.chat, img, 'error.jpg', null, m);
 };
 handler.help = ['afk [alasan]'];
 handler.tags = ['main'];
-handler.command = /^delete$/i;
+handler.command = /^dr$/i;
 export default handler;
 
 async function realistic(prompt) {
