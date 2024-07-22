@@ -50,7 +50,7 @@ export async function before(m) {
         const imageUrl = await uploadImage(img);
         const canProcessImage = await checkImageLimit(senderId);
         if (canProcessImage) {
-          const response = await handleUserImage(senderId, imageUrl, text);
+          const response = await handleUserImage(senderId, imageUrl);
           ModeAndNumber[senderId] = { mode: 'gemini', number: 5 };
             await dly(2000);
             conn.sendMessage(senderId, { text: response });
@@ -280,7 +280,7 @@ async function handleUserMessage(userId, message) {
   return text;
 }
 
-async function handleUserImage(userId, imageUrl, texto) {
+async function handleUserImage(userId, imageUrl) {
   if (!chatusers[userId]) {
     chatusers[userId] = {
       model: genAI.getGenerativeModel({ model: "gemini-1.5-flash" }),
@@ -303,7 +303,7 @@ async function handleUserImage(userId, imageUrl, texto) {
     parts: [imagePart]
   });
 
-  const prompt = texto || "ماذا ترى في هذه الصورة؟";
+  const prompt = "ماذا ترى في هذه الصورة؟";
   const result = await userChat.model.generateContent([prompt, imagePart]);
   const text = await result.response.text();
 
